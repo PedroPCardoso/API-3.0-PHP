@@ -5,6 +5,7 @@ SDK API-3.0 PHP
 ## Principais recursos
 
 * [x] Pagamentos por cartão de crédito.
+* [x] Analise anti-fraude.
 * [x] Pagamentos recorrentes.
     * [x] Com autorização na primeira recorrência.
     * [x] Com autorização a partir da primeira recorrência.
