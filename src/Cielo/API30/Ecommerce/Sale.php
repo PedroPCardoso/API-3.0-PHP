@@ -15,6 +15,9 @@ class Sale implements \JsonSerializable
     private $customer;
 
     private $payment;
+
+    private $fraudAnalysis;
+
     
 
     /**
@@ -86,6 +89,21 @@ class Sale implements \JsonSerializable
         return $customer;
     }
 
+
+        /**
+     * @param $name
+     *
+     * @return FraudAnalysis
+     */
+    public function fraudAnalysis($Sequence,$SequenceCriteria,$Provider,$CaptureOnLowRisk,$VoidOnHighRisk,$TotalOrderAmount)
+    {
+        $fraudAnalysis = new FraudAnalysis($Sequence,$SequenceCriteria,$Provider,$CaptureOnLowRisk,$VoidOnHighRisk,$TotalOrderAmount);
+
+        $this->setFraudAnalysis($fraudAnalysis);
+
+        return $customer;
+    }
+
     /**
      * @param     $amount
      * @param int $installments
@@ -140,6 +158,30 @@ class Sale implements \JsonSerializable
 
         return $this;
     }
+
+
+
+    /**
+     * @return mixed
+     */
+    public function getFraudAnalysis()
+    {
+        return $this->fraudAnalysis;
+    }
+
+     /**
+     * @param FraudAnalysis $fraudAnalysis
+     *
+     * @return $this
+     */
+    public function setFraudAnalysis(FraudAnalysis $fraudAnalysis)
+    {
+        $this->fraudAnalysis = $fraudAnalysis;
+
+        return $this;
+    }
+
+    
 
     /**
      * @return mixed
