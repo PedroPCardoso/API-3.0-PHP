@@ -625,6 +625,12 @@ class Payment implements \JsonSerializable
         return $this;
     }
 
+    public function FraudAnalysis($FraudAnalysis){
+        $this->FraudAnalysis = $FraudAnalysis;
+
+        return $this;
+    }
+
     /**
      * @return mixed
      */

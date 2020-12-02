@@ -15,6 +15,7 @@ class Sale implements \JsonSerializable
     private $customer;
 
     private $payment;
+    
 
     /**
      * Sale constructor.
