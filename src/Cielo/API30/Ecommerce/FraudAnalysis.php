@@ -52,11 +52,10 @@ class FraudAnalysis implements \JsonSerializable
         $this->Sequence      = isset($data->Sequence) ? $data->Sequence : null;
         $this->SequenceCriteria     = isset($data->SequenceCriteria) ? $data->SequenceCriteria : null;
         $this->Provider = isset($data->Provider) ? $data->Provider : null;
+        $this->TotalOrderAmount = isset($data->TotalOrderAmount) ? $data->TotalOrderAmount : null;
 
         $this->CaptureOnLowRisk     = isset($data->CaptureOnLowRisk) ? $data->CaptureOnLowRisk : null;
         $this->VoidOnHighRisk = isset($data->VoidOnHighRisk) ? $data->VoidOnHighRisk : null;
-
-        $this->TotalOrderAmount = isset($data->TotalOrderAmount) ? $data->TotalOrderAmount : null;
     }
 
 

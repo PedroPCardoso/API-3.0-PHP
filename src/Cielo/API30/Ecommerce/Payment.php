@@ -108,6 +108,9 @@ class Payment implements \JsonSerializable
 
     private $instructions;
 
+    private $fraudAnalysis;
+
+
     /**
      * Payment constructor.
      *
@@ -146,7 +149,7 @@ class Payment implements \JsonSerializable
         $this->authenticate     = isset($data->Authenticate) ? !!$data->Authenticate : false;
         $this->recurrent        = isset($data->Recurrent) ? !!$data->Recurrent : false;
 
-        if (isset($data->RecurrentPayment)) {
+          if (isset($data->RecurrentPayment)) {
             $this->recurrentPayment = new RecurrentPayment(false);
             $this->recurrentPayment->populate($data->RecurrentPayment);
         }
@@ -167,6 +170,7 @@ class Payment implements \JsonSerializable
         $this->barCodeNumber  = isset($data->BarCodeNumber) ? $data->BarCodeNumber : null;
         $this->digitableLine  = isset($data->DigitableLine) ? $data->DigitableLine : null;
         $this->address        = isset($data->Address) ? $data->Address : null;
+        
 
         $this->authenticationUrl = isset($data->AuthenticationUrl) ? $data->AuthenticationUrl : null;
         $this->tid               = isset($data->Tid) ? $data->Tid : null;
@@ -194,6 +198,10 @@ class Payment implements \JsonSerializable
         $this->demonstrative  = isset($data->Demonstrative) ? $data->Demonstrative : null;
         $this->identification = isset($data->Identification) ? $data->Identification : null;
         $this->instructions   = isset($data->Instructions) ? $data->Instructions : null;
+
+
+        $this->fraudAnalysis   = isset($data->fraudAnalysis) ? $data->fraudAnalysis : null;
+
     }
 
     /**
@@ -264,6 +272,21 @@ class Payment implements \JsonSerializable
 
         return $recurrentPayment;
     }
+
+            /**
+     * @param $name
+     *
+     * @return FraudAnalysis
+     */
+    public function fraudAnalysis($Sequence,$SequenceCriteria,$Provider,$TotalOrderAmount,$CaptureOnLowRisk=null,$VoidOnHighRisk=null)
+    {
+        $fraudAnalysis = new FraudAnalysis($Sequence,$SequenceCriteria,$Provider,$CaptureOnLowRisk,$VoidOnHighRisk,$TotalOrderAmount);
+
+        $this->setFraudAnalysis($fraudAnalysis);
+
+        return $fraudAnalysis;
+    }
+
 
     /**
      * @return mixed
@@ -625,12 +648,25 @@ class Payment implements \JsonSerializable
         return $this;
     }
 
-    public function FraudAnalysis($FraudAnalysis){
-        $this->FraudAnalysis = $FraudAnalysis;
+    /**
+     * @return mixed
+     */
+    public function getFraudAnalysis()
+    {
+        return $this->fraudAnalysis;
+    }
+
+     /**
+     * @param FraudAnalysis $fraudAnalysis
+     *
+     * @return $this
+     */
+    public function setFraudAnalysis(FraudAnalysis $fraudAnalysis)
+    {
+        $this->fraudAnalysis = $fraudAnalysis;
 
         return $this;
     }
-
     /**
      * @return mixed
      */
