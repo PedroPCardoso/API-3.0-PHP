@@ -101,7 +101,7 @@ class Sale implements \JsonSerializable
 
         $this->setFraudAnalysis($fraudAnalysis);
 
-        return $customer;
+        return $fraudAnalysis;
     }
 
     /**
