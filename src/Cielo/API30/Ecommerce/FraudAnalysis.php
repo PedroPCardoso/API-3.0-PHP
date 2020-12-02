@@ -19,7 +19,7 @@ class FraudAnalysis implements \JsonSerializable
     private $CaptureOnLowRisk;
 
     private $VoidOnHighRisk;
-
+    
     private $TotalOrderAmount;
 
     /**
@@ -27,9 +27,13 @@ class FraudAnalysis implements \JsonSerializable
      *
      * @param null $name
      */
-    public function __construct($Sequence = null)
+    public function __construct($Sequence = null,$SequenceCriteria=null, $Provider=null,$TotalOrderAmount =null)
     {
-        $this->setName($Sequence);
+        $this->setSequence($Sequence);
+        $this->setSequenceCriteria($SequenceCriteria);
+        $this->setProvider($Provider);
+        $this->setTotalOrderAmount($TotalOrderAmount);
+
     }
 
     /**

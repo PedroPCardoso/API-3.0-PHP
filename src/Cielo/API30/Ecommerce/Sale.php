@@ -97,7 +97,7 @@ class Sale implements \JsonSerializable
      */
     public function fraudAnalysis($Sequence,$SequenceCriteria,$Provider,$CaptureOnLowRisk,$VoidOnHighRisk,$TotalOrderAmount)
     {
-        $fraudAnalysis = new FraudAnalysis($Sequence,$SequenceCriteria,$Provider,$CaptureOnLowRisk,$VoidOnHighRisk,$TotalOrderAmount);
+        $fraudAnalysis = new FraudAnalysis($Sequence,$SequenceCriteria,$Provider,$TotalOrderAmount);
 
         $this->setFraudAnalysis($fraudAnalysis);
 
