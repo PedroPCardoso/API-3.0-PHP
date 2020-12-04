@@ -25,6 +25,11 @@ class FraudAnalysis implements \JsonSerializable
 
     private $browser;
 
+    private $status;
+
+    private $replayData;
+
+
     /**
      * Customer constructor.
      *
@@ -61,6 +66,7 @@ class FraudAnalysis implements \JsonSerializable
         $this->CaptureOnLowRisk     = isset($data->CaptureOnLowRisk) ? $data->CaptureOnLowRisk : false;
         $this->VoidOnHighRisk = isset($data->VoidOnHighRisk) ? $data->VoidOnHighRisk : false;
        
+        $this->status  = isset($data->status) ? $data->status : null;
       
     }
 
@@ -154,6 +160,31 @@ class FraudAnalysis implements \JsonSerializable
     }
 
 
+
+     /**
+     * @return mixed
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+         /**
+     * @return mixed
+     */
+    public function getReplayData()
+    {
+        return $this->replayData;
+    }
+
+
+             /**
+     * @return mixed
+     */
+    public function getScore()
+    {
+        return $this->replayData->Score;
+    }
     /**
      * @return mixed
      */
