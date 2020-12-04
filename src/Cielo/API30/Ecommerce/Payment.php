@@ -278,9 +278,9 @@ class Payment implements \JsonSerializable
      *
      * @return FraudAnalysis
      */
-    public function fraudAnalysis($Sequence,$SequenceCriteria,$Provider,$TotalOrderAmount,$CaptureOnLowRisk=null,$VoidOnHighRisk=null)
+    public function fraudAnalysis($Sequence,$SequenceCriteria,$Provider,$TotalOrderAmount,$CaptureOnLowRisk=false,$VoidOnHighRisk=false)
     {
-        $fraudAnalysis = new FraudAnalysis($Sequence,$SequenceCriteria,$Provider,$CaptureOnLowRisk,$VoidOnHighRisk,$TotalOrderAmount);
+        $fraudAnalysis = new FraudAnalysis($Sequence,$SequenceCriteria,$Provider,$TotalOrderAmount,$CaptureOnLowRisk,$VoidOnHighRisk);
 
         $this->setFraudAnalysis($fraudAnalysis);
 
