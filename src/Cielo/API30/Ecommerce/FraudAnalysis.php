@@ -1,6 +1,7 @@
 <?php
 
 namespace Cielo\API30\Ecommerce;
+use stdClass;
 
 /**
  * Class Customer
