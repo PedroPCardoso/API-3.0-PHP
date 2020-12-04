@@ -22,6 +22,8 @@ class FraudAnalysis implements \JsonSerializable
     
     private $TotalOrderAmount;
 
+    private $browser;
+
     /**
      * Customer constructor.
      *
@@ -33,7 +35,7 @@ class FraudAnalysis implements \JsonSerializable
         $this->setSequenceCriteria($SequenceCriteria);
         $this->setProvider($Provider);
         $this->setTotalOrderAmount($TotalOrderAmount);
-
+        
     }
 
     /**
@@ -54,8 +56,10 @@ class FraudAnalysis implements \JsonSerializable
         $this->Provider = isset($data->Provider) ? $data->Provider : null;
         $this->TotalOrderAmount = isset($data->TotalOrderAmount) ? $data->TotalOrderAmount : null;
 
-        $this->CaptureOnLowRisk     = isset($data->CaptureOnLowRisk) ? $data->CaptureOnLowRisk : null;
-        $this->VoidOnHighRisk = isset($data->VoidOnHighRisk) ? $data->VoidOnHighRisk : null;
+        $this->CaptureOnLowRisk     = isset($data->CaptureOnLowRisk) ? $data->CaptureOnLowRisk : false;
+        $this->VoidOnHighRisk = isset($data->VoidOnHighRisk) ? $data->VoidOnHighRisk : false;
+       
+      
     }
 
 
@@ -68,7 +72,7 @@ class FraudAnalysis implements \JsonSerializable
     }
 
     /**
-     * @param $name
+     * @param $Sequence
      *
      * @return $this
      */
@@ -88,7 +92,7 @@ class FraudAnalysis implements \JsonSerializable
     }
 
     /**
-     * @param $email
+     * @param $SequenceCriteria
      *
      * @return $this
      */
@@ -108,7 +112,7 @@ class FraudAnalysis implements \JsonSerializable
     }
 
     /**
-     * @param $birthDate
+     * @param $Provider
      *
      * @return $this
      */
@@ -118,6 +122,35 @@ class FraudAnalysis implements \JsonSerializable
 
         return $this;
     }
+
+    /**
+     * @param $data
+     *
+     * @return $this
+     */
+    public function setBrowser(array $data = []){
+
+        $browserData = new stdClass();
+        $browserData->browserFingerprint = $data['fingerprint'] ?? null;
+        $browserData->cookiesAccepted    = $data['cookies']     ?? null;
+        $browserData->email              = $data['email']       ?? null;
+        $browserData->hostName           = $data['hostname']    ?? null;
+        $browserData->ipAddress          = $data['ip']          ?? null;
+        $browserData->type               = $data['type']        ?? null;
+ 
+        $this->browser = $browserData;
+        return $this;
+    }
+
+
+     /**
+     * @return mixed
+     */
+    public function getBrowse()
+    {
+        return $this->browser;
+    }
+
 
     /**
      * @return mixed
