@@ -67,6 +67,8 @@ class FraudAnalysis implements \JsonSerializable
         $this->VoidOnHighRisk = isset($data->VoidOnHighRisk) ? $data->VoidOnHighRisk : false;
        
         $this->status  = isset($data->status) ? $data->status : null;
+        $this->replayData  = isset($data->replayData) ? $data->replayData : null;
+
       
     }
 
