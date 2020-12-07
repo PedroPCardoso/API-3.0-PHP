@@ -166,7 +166,7 @@ class FraudAnalysis implements \JsonSerializable
         $cartData->type               = $data['type']        ?? null;
         $cartData->items = null;
 
-        $itens = new stdClass();
+        $items = new stdClass();
         $items->name = $data['name']  ?? null;	
         $items->quantity =  $data['quantity']  ??  1;	
         $items->sku = $data['sku']  ?? null;	
