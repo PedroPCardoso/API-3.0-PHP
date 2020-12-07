@@ -25,11 +25,13 @@ class FraudAnalysis implements \JsonSerializable
 
     private $browser;
 
+    private $cart;
+
     private $status;
 
     private $replayData;
 
-
+    private $merchantDefinedFields;
     /**
      * Customer constructor.
      *
@@ -152,6 +154,56 @@ class FraudAnalysis implements \JsonSerializable
         return $this;
     }
 
+
+    public function setCart(array $data = []){
+
+        $cartData = new stdClass();
+        $cartData->browserFingerprint = $data['fingerprint'] ?? null;
+        $cartData->cookiesAccepted    = $data['cookies']     ?? null;
+        $cartData->email              = $data['email']       ?? null;
+        $cartData->hostName           = $data['hostname']    ?? null;
+        $cartData->ipAddress          = $data['ip']          ?? null;
+        $cartData->type               = $data['type']        ?? null;
+        $cartData->items = null;
+
+        $itens = new stdClass();
+        $items->name = $data['name']  ?? null;	
+        $items->quantity =  $data['quantity']  ??  1;	
+        $items->sku = $data['sku']  ?? null;	
+        // Preço unitário UnitPrice
+        $items->unitprice = $data['unitprice']  ?? null;	
+
+
+        $this->cart = $cartData;
+        $this->cart->items = $items;
+        
+        return $this;
+    }
+
+    public function setMerchantDefinedFields(array $data = []){
+        // $MerchantData = new stdClass();
+        $this->merchantDefinedFields = $data;
+    }
+
+
+     /**
+     * @return mixed
+     */
+    public function getMerchantDefinedFields(){
+
+        return $this->merchantDefinedFields;
+    }
+   
+
+
+     /**
+     * @return mixed
+     */
+    public function getCart(){
+
+        return $this->cart;
+    }
+    
 
      /**
      * @return mixed
