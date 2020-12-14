@@ -175,7 +175,7 @@ class FraudAnalysis implements \JsonSerializable
 
 
         $this->cart = $cartData;
-        $this->cart->items = $items;
+        $this->cart->items =array($items);
         
         return $this;
     }
